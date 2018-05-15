@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block title %}Table View{% endblock %}
+
+{% block body %}
+    <h1>Employee Table</h1>
+
+    {% if employees is defined and employees|length > 0 %}
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+            {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.fname }}</td>
+                    <td>{{ employee.lname }}</td>
+                    <td>{{ employee.email }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h3>No data</h3>
+    {% endif %}
+    <a href="/excel">Export to Excel</a>
+    <a href="/pdf">Export to PDF</a>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+{% endblock %}
